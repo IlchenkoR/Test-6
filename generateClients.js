@@ -1,4 +1,4 @@
-const { faker } = require('@faker-js/faker');
+import { faker } from '@faker-js/faker';
 
 const serviceTable = {
 	'Массаж': 2,
@@ -29,11 +29,11 @@ function calculatePriceSum(selectedKeys, items) {
 
 function genetateInfo() {
 	const clients = []
-	const numClient = getRandomInt(10, 200)
+	const numClient = getRandomInt(10, 50)
 	const services = [];
 	const numServices = getRandomInt(5, 10);
 	const visits = []
-	const numVisits = getRandomInt(10, 300)
+	const numVisits = getRandomInt(10, 100)
 
 	while(clients.length < numClient){
 		const client = {
@@ -103,4 +103,4 @@ function genetateInfo() {
 
 }
 
-module.exports = genetateInfo;
+export default genetateInfo;

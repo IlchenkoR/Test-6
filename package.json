@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "code templates for development",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "fill:db": "node index.js"
   },
   "keywords": [],
   "author": "Reon",
   "license": "ISC",
   "dependencies": {
+    "log4js": "^6.9.1",
     "mongodb": "^6.8.0",
     "mongoose": "^8.6.1",
     "uuid": "^10.0.0"
