@@ -10,7 +10,6 @@ const serviceTable = {
 	'Лазерная эпиляция': 9
 };
 
-// const serviceNames = ['Массаж', 'Депиляция', 'Лазерное омоложение лица', 'Ультразвуковой лифтинг','Лазерное удаление сосудов', 'Коррекция мимических морщин',]
 const serviceNames = Object.keys(serviceTable)
 const statuses = ['Запланирован', 'Посетил', 'Отменил'];
 
@@ -82,9 +81,6 @@ function genetateInfo() {
 		}else{
 			visitStatus = statuses[2]
 		}
-
-		// const sumValues = 
-
 
 		const visit = {
 			_id: faker.string.uuid(),
