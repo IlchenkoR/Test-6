@@ -27,62 +27,46 @@ function calculatePriceSum(selectedKeys, items) {
   }
 
 function genetateInfo() {
-	const clients = []
-	const numClient = getRandomInt(10, 50)
-	const services = [];
-	const numServices = getRandomInt(5, 10);
-	const visits = []
-	const numVisits = getRandomInt(10, 100)
 
-	while(clients.length < numClient){
-		const client = {
-			_id: faker.string.uuid(),
-			firstName: faker.person.firstName(),
-			lastName: faker.person.lastName(),
-			middleName: faker.person.middleName(),
-			dateOfBirth: faker.date.past(60, new Date(2005, 0, 1)).toISOString().split('T')[0],
-			phoneNumber: faker.phone.number({ style: 'national' })
-		  };
-		clients.push(client);
-	}
+	const clients = Array.from({ length: getRandomInt(10, 50) }).map(() => {
+		return {
+		_id: faker.string.uuid(),
+		firstName: faker.person.firstName(),
+		lastName: faker.person.lastName(),
+		middleName: faker.person.middleName(),
+		dateOfBirth: faker.date.past(60, new Date(2005, 0, 1)).toISOString().split('T')[0],
+		phoneNumber: faker.phone.number({ style: 'national' })
+	  }});
 
-	while (services.length < numServices) {
+	const services = Array.from({length: getRandomInt(5, 10)}).map(() => {
 		const serviceName = serviceNames[Math.floor(Math.random() * serviceNames.length)]
-		const service = {
-		  _id: faker.string.uuid(),
-		  name: serviceName,
-		  code: faker.string.alphanumeric(10),
-		  price: serviceTable[serviceName],
-		  description: faker.commerce.productDescription(),
-		};
-		if (!services.some(existingService => existingService.name === serviceName)) {
-			services.push(service);
-		}
-	}
+		return {
+			_id: faker.string.uuid(),
+			name: serviceName,
+			code: faker.string.alphanumeric(10),
+			price: serviceTable[serviceName],
+			description: faker.commerce.productDescription()
+			}	
+	})
 
-	while(visits.length < numVisits){
-		const plannedDateTime = faker.date.between({ from: '2024-05-01T00:00:00.000Z', to: '2024-12-01T00:00:00.000Z' })
-		let actualDateTime = ''
+
+	const visits = Array.from({length: getRandomInt(10, 100)}).map(() => {
+		const plannedDateTime = faker.date.between({ from: faker.date.recent(), to: faker.date.soon() })
 		const visitCheck = Math.random() < 0.5
 		const currentDate = new Date();
-		let visitStatus = ''
-		const plannedServices = []
+		
+		const plannedServices = Array.from({ length: getRandomInt(1, 3) }).map(() =>
+		services[getRandomInt(0, services.length - 1)]._id
+	);
 
-		while(plannedServices.length < getRandomInt(1, 3))
-		plannedServices.push(services[getRandomInt(0, (services.length)-1)]._id)
+		const visitStatus = visitCheck ? (currentDate > plannedDateTime ? statuses[1] : statuses[0]) : statuses[2];
 
-		if(visitCheck){
-			if(currentDate > plannedDateTime){
-			actualDateTime = faker.date.between({ from: plannedDateTime, to: currentDate })
-			visitStatus = statuses[1]
-			}else {
-			visitStatus = statuses[0]
-			}
-		}else{
-			visitStatus = statuses[2]
-		}
+		const actualDateTime = visitCheck && currentDate > plannedDateTime 
+		? faker.date.between({ from: plannedDateTime, to: currentDate })
+		: '';
 
-		const visit = {
+
+		return {
 			_id: faker.string.uuid(),
 			client: clients[getRandomInt(0, (clients.length)-1)]._id,
 			plannedDateTime: plannedDateTime,
@@ -91,9 +75,7 @@ function genetateInfo() {
 			selectedKeys: plannedServices,
 			price: calculatePriceSum(plannedServices, services)
 		}	
-
-		visits.push(visit)
-	}  
+	}) 
 
 	return { clients, services, visits }
 

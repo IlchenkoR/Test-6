@@ -1,3 +1,17 @@
 [2024-09-09T10:09:55.650] [INFO] default - Успешно подключено к MongoDB
 [2024-09-09T10:09:55.850] [INFO] default - Данные успешно вставлены
 [2024-09-09T10:09:55.861] [INFO] default - Отключение от MongoDB
+[2024-09-09T11:51:31.301] [INFO] default - Успешно подключено к MongoDB
+[2024-09-09T11:51:31.316] [ERROR] default - Не удалось подключиться к MongoDB ReferenceError: Cannot access 'services' before initialization
+    at file:///C:/Users/%D0%A0%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA/Desktop/Ich%20Test/4/generateClients.js:43:3
+    at Array.map (<anonymous>)
+    at genetateInfo (file:///C:/Users/%D0%A0%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA/Desktop/Ich%20Test/4/generateClients.js:41:61)
+    at connectToDatabase (file:///C:/Users/%D0%A0%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA/Desktop/Ich%20Test/4/index.js:14:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2024-09-09T11:51:31.328] [INFO] default - Отключение от MongoDB
+[2024-09-09T11:55:14.321] [INFO] default - Успешно подключено к MongoDB
+[2024-09-09T11:55:14.551] [INFO] default - Данные успешно вставлены
+[2024-09-09T11:55:14.561] [INFO] default - Отключение от MongoDB
+[2024-09-09T11:56:32.965] [INFO] default - Успешно подключено к MongoDB
+[2024-09-09T11:56:33.170] [INFO] default - Данные успешно вставлены
+[2024-09-09T11:56:33.178] [INFO] default - Отключение от MongoDB
